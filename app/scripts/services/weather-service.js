@@ -2,23 +2,24 @@
 
 var app = angular.module('angularWeatherApp');
 
-app.service('weatherService', function weatherService($http, $q) {
+app.service('weatherService', function weatherService(httpService, $q) {
     return {
 	    getTodaysWeather: function () {
 		    return "sunny";
 	    },
 		
-		getWeatherApi: function () {
+		getWeatherApi: function (url) {
 			var deferred = $q.defer();
 		
-			$http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/weather?q=London,uk'}).
-				success(function(data, status, headers, config) {
+			httpService.get(url).then(
+				function(data) {
 					deferred.resolve(data);
-				}).
-				error(function(data, status, headers, config) {
+				},
+				function(data) {
 					deferred.reject(data);
-				});
-			
+				}
+			);
+					
 			return deferred.promise;
 		}
 		
