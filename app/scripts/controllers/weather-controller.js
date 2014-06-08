@@ -7,6 +7,6 @@ app.controller('WeatherCtrl', ['$scope', 'weatherService', function ($scope, wea
 	$scope.weatherApiResult = '';
 	
 	weatherService.getWeatherApi('http://api.openweathermap.org/data/2.5/weather?q=London,uk').then(function(data){
-		$scope.weatherApiResult = data;
+		$scope.weatherApiResult = data.weather[0].description;
 	});
 }]);
