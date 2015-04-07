@@ -5,7 +5,7 @@ Simple starting project for an AngularJS single page app.
 
 Uses [connect](http://www.senchalabs.org/connect/) to serve static files.
 
-
+Install [Node.js](https://nodejs.org/)
     npm install connect
     node server.js
 
